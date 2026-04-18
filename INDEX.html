@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DCP Gas & Luce — Home finale</title>
+  <style>
+    :root{
+      --blue:#0E75BB;
+      --blue2:#0A4F80;
+      --yellow:#B7B027;
+      --text:#153248;
+      --muted:#5f7485;
+      --line:rgba(14,117,187,.14);
+      --shadow:0 18px 45px rgba(8,55,89,.12);
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Arial,sans-serif;
+      color:var(--text);
+      line-height:1.58;
+      background:
+        radial-gradient(circle at 0 0,rgba(183,176,39,.10),transparent 22%),
+        radial-gradient(circle at 100% 10%,rgba(14,117,187,.10),transparent 24%),
+        linear-gradient(180deg,#fbfdff 0%,#f3f8fc 100%);
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--max),calc(100% - 32px));margin:0 auto}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand img{width:180px}
+    .menu{display:flex;gap:22px;align-items:center;flex-wrap:wrap;color:var(--muted);font-weight:600}
+    .menu a:hover{color:var(--blue)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:50px;padding:0 22px;border-radius:999px;
+      border:1px solid transparent;font-weight:800;
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 16px 34px rgba(14,117,187,.24)}
+    .btn-secondary{background:#fff;color:var(--blue);border-color:rgba(14,117,187,.22)}
+    .btn-yellow{background:var(--yellow);color:#132c3d;box-shadow:0 16px 34px rgba(183,176,39,.23)}
+    section{padding:88px 0}
+    .hero{padding:52px 0 74px}
+    .hero-grid,.grid-3,.grid-2,.green-wrap,.assist-grid,.locations,.footer-grid,.contact-strip{display:grid;gap:22px}
+    .hero-grid{grid-template-columns:1.08fr .92fr;align-items:center}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2,.assist-grid{grid-template-columns:repeat(2,1fr)}
+    .green-wrap{grid-template-columns:1.1fr .9fr;align-items:center}
+    .locations{grid-template-columns:1.02fr .98fr}
+    .footer-grid{grid-template-columns:1.2fr .8fr .8fr}
+    .contact-strip{grid-template-columns:repeat(4,1fr);margin-top:24px}
+    .eyebrow{
+      display:inline-flex;padding:10px 14px;border-radius:999px;
+      background:rgba(183,176,39,.14);color:var(--blue2);
+      font-weight:800;font-size:13px;border:1px solid rgba(183,176,39,.28)
+    }
+    h1{font-size:clamp(2.4rem,4.7vw,4.7rem);line-height:1.02;margin:18px 0;letter-spacing:-.04em}
+    .lead,.muted{color:var(--muted)}
+    .hero-actions,.quick-contact,.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .pill,.card,.contact-box,.strip-item,.mini,.location-item,.green-panel{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .pill{padding:12px 16px;border-radius:999px;font-weight:700}
+    .hero-card{
+      position:relative;overflow:hidden;
+      background:linear-gradient(160deg,#fff 0%,#eef7fd 55%,#e9f1f7 100%);
+      border:1px solid var(--line);box-shadow:var(--shadow);border-radius:32px;padding:28px
+    }
+    .hero-logo{width:430px;margin:4px auto 18px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .mini{border-radius:18px;padding:16px}
+    .mini strong{display:block;color:var(--blue);font-size:1.15rem;margin-bottom:6px}
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:28px}
+    .kicker{color:var(--blue);text-transform:uppercase;letter-spacing:.14em;font-weight:900;font-size:.78rem;margin-bottom:10px}
+    h2{font-size:clamp(1.8rem,3.2vw,3rem);margin:0 0 10px;letter-spacing:-.03em}
+    .card,.contact-box,.strip-item,.location-item,.green-panel{border-radius:26px;padding:26px}
+    .icon{
+      width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+      font-size:26px;font-weight:900;
+      background:linear-gradient(135deg,rgba(14,117,187,.12),rgba(183,176,39,.18));
+      color:var(--blue);margin-bottom:18px
+    }
+    .service-card{position:relative;padding-top:28px;overflow:hidden}
+    .service-card:after{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--blue),var(--yellow))}
+    .service-card ul{margin:14px 0 0;padding-left:18px;color:var(--muted)}
+    .service-card li+li{margin-top:8px}
+    .green{background:linear-gradient(140deg,#0f6ba8 0%,#0b4f81 64%,#0a456e 100%);color:#fff}
+    .green .muted{color:rgba(255,255,255,.78)}
+    .green-panel{background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.05));border-color:rgba(255,255,255,.16)}
+    .green-item{padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+    .green-list{display:grid;gap:14px}
+    .map-frame{min-height:100%;border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+    .map-frame iframe{width:100%;height:100%;min-height:100%;border:0;display:block}
+    .field{width:100%;min-height:54px;border-radius:16px;border:1px solid rgba(14,117,187,.16);padding:0 16px;font:inherit;color:var(--text);background:#fff}
+    textarea.field{padding:16px;min-height:150px;resize:vertical}
+    .form-card form{display:grid;gap:14px}
+    .footer{padding:30px 0 54px;color:#fff;background:linear-gradient(180deg,#0d3d61 0%,#092b45 100%);margin-top:30px}
+    .footer a{color:rgba(255,255,255,.85)}
+    .footer small{color:rgba(255,255,255,.68)}
+    @media(max-width:980px){
+      .hero-grid,.grid-3,.grid-2,.green-wrap,.assist-grid,.locations,.footer-grid,.contact-strip,.hero-stats{grid-template-columns:1fr}
+      .menu{display:none}
+      .brand img{width:150px}
+      section{padding:72px 0}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <img src="Azzurro Geometrico Professionale Lavoro Biglietto Da Visita (1).png" alt="Logo DCP Gas e Luce 15 anniversario" />
+      </a>
+      <nav class="menu">
+        <a href="#servizi">Servizi</a>
+        <a href="#green">Energia green</a>
+        <a href="#assistenza">Assistenza</a>
+        <a href="#dove-siamo">Dove siamo</a>
+        <a href="#contatti">Contatti</a>
+        <a class="btn btn-primary" href="https://areaclienti.dcpgas.it/" target="_blank">Area clienti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">15° anniversario · Energia, servizi e mobilità</span>
+          <h1>Gas, energia elettrica e mobilità con un’assistenza vera.</h1>
+          <p class="lead">DCP Gas &amp; Luce accompagna famiglie e imprese con un servizio diretto, chiaro e vicino al territorio. Offriamo forniture di gas naturale, energia elettrica ed e-mobility, con attenzione concreta all’efficienza, alla sostenibilità e alla semplicità di gestione.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contatti">Richiedi informazioni</a>
+            <a class="btn btn-secondary" href="#servizi">Scopri i servizi</a>
+          </div>
+          <div class="quick-contact">
+            <div class="pill">📧 contatti@dcpgas.it</div>
+            <div class="pill">💬 340 669 4946</div>
+            <div class="pill">⚠️ Crediti: 351 778 8418</div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img class="hero-logo" src="Azzurro Geometrico Professionale Lavoro Biglietto Da Visita (1).png" alt="DCP Gas e Luce" />
+          <div class="hero-stats">
+            <div class="mini"><strong>Gas naturale</strong>Fornitura chiara e supporto continuo per casa e impresa.</div>
+            <div class="mini"><strong>Energia elettrica</strong>Soluzioni pensate per efficienza, risparmio e controllo.</div>
+            <div class="mini"><strong>E-Mobility</strong>Servizi evoluti per una mobilità più pulita e moderna.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Perché sceglierci</div>
+            <h2>Un partner operativo, non un fornitore distante.</h2>
+          </div>
+          <p class="muted">Da 15 anni lavoriamo sul territorio con un approccio pratico, affidabile e vicino alle persone.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">👤</div>
+            <h3>Assistenza reale</h3>
+            <p class="muted">Parli con persone, non con un call center impersonale. Ti seguiamo su informazioni, pratiche, fatture e richieste.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⚙️</div>
+            <h3>Gestione completa</h3>
+            <p class="muted">Attivazioni, volture, subentri, supporto amministrativo e orientamento sui servizi: tutto in modo semplice e diretto.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🌱</div>
+            <h3>Visione sostenibile</h3>
+            <p class="muted">Promuoviamo un uso più consapevole dell’energia e soluzioni orientate a efficienza, risparmio e futuro green.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="servizi">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Servizi</div>
+            <h2>Le nostre soluzioni per energia e mobilità.</h2>
+          </div>
+          <p class="muted">Una proposta chiara, con tre aree principali: gas naturale, energia elettrica ed e-mobility.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card service-card">
+            <div class="icon">🔥</div>
+            <h3>Gas naturale</h3>
+            <p class="muted">Un servizio affidabile e trasparente per accompagnarti ogni giorno con sicurezza e semplicità.</p>
+            <ul>
+              <li>Attivazioni, subentri e volture</li>
+              <li>Supporto su consumi e fatturazione</li>
+              <li>Servizio dedicato per famiglie e imprese</li>
+              <li>Gestione pratica e assistenza continua</li>
+            </ul>
+          </article>
+          <article class="card service-card">
+            <div class="icon">⚡</div>
+            <h3>Energia elettrica</h3>
+            <p class="muted">Soluzioni energetiche pensate per ridurre i costi, migliorare l’efficienza e contribuire a un mondo più verde.</p>
+            <ul>
+              <li>Forniture per uso domestico e business</li>
+              <li>Ottimizzazione dei consumi</li>
+              <li>Assistenza rapida sulle pratiche</li>
+              <li>Approccio orientato a efficienza e sostenibilità</li>
+            </ul>
+          </article>
+          <article class="card service-card">
+            <div class="icon">🚗</div>
+            <h3>Mobilità</h3>
+            <p class="muted">Sosteniamo il cambiamento con servizi avanzati per la ricarica elettrica e per una mobilità più pulita, moderna e sostenibile.</p>
+            <ul>
+              <li>Supporto per e-mobility e ricarica</li>
+              <li>Soluzioni per privati e aziende</li>
+              <li>Integrazione tra energia e mobilità</li>
+              <li>Visione futura e innovazione concreta</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="green" class="green">
+      <div class="container green-wrap">
+        <div>
+          <div class="kicker" style="color:rgba(255,255,255,.78)">Energia green</div>
+          <h2>Energia più consapevole. Oggi.</h2>
+          <p class="muted">DCP Gas &amp; Luce punta su un modello energetico più responsabile. Per l’energia elettrica comunichiamo una fornitura da fonti rinnovabili accompagnata da Garanzie d’Origine, così da contribuire attivamente alla transizione energetica e a un futuro più sostenibile.</p>
+          <p class="muted">La sostenibilità per noi non è uno slogan: significa aiutare clienti privati e aziende a scegliere soluzioni più efficienti, ridurre gli sprechi e gestire i consumi con maggiore consapevolezza.</p>
+          <div class="hero-actions">
+            <a class="btn btn-yellow" href="#contatti">Parla con noi</a>
+            <a class="btn btn-secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.28)" href="#assistenza">Vai all’assistenza</a>
+          </div>
+        </div>
+        <div class="green-panel">
+          <div class="green-list">
+            <div class="green-item"><strong>100% fonti rinnovabili</strong><br><span class="muted">Energia elettrica comunicata con Garanzie d’Origine.</span></div>
+            <div class="green-item"><strong>Efficienza energetica</strong><br><span class="muted">Più attenzione ai consumi, meno sprechi e maggiore controllo.</span></div>
+            <div class="green-item"><strong>Mobilità sostenibile</strong><br><span class="muted">Servizi pensati per accompagnare il cambiamento verso l’elettrico.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Chi siamo</div>
+            <h2>Da 15 anni al tuo fianco.</h2>
+          </div>
+          <p class="muted">Una realtà a gestione familiare, radicata nel territorio, con esperienza, affidabilità e servizio su misura.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>La nostra storia</h3>
+            <p class="muted">DCP Gas &amp; Luce è una società a gestione familiare attiva da 15 anni nella fornitura di gas ed energia elettrica. Con passione e trasparenza accompagniamo ogni giorno i clienti verso un’energia più semplice, vicina e sostenibile.</p>
+          </article>
+          <article class="card">
+            <h3>Come lavoriamo</h3>
+            <p class="muted">Mettiamo al centro chiarezza, presenza sul territorio e velocità di risposta. L’obiettivo è semplificare un settore spesso complesso, con persone reali, processi chiari e supporto continuo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="assistenza">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Assistenza</div>
+            <h2>Due canali chiari, così il cliente sa subito dove scrivere.</h2>
+          </div>
+          <p class="muted">Abbiamo separato assistenza clienti e ufficio crediti per dare risposte più rapide e una gestione più ordinata.</p>
+        </div>
+        <div class="assist-grid">
+          <article class="contact-box">
+            <h3>Assistenza clienti</h3>
+            <p class="muted">Per informazioni, supporto sulle forniture, richieste, pratiche e assistenza generale.</p>
+            <p><strong>Email:</strong> contatti@dcpgas.it<br><strong>WhatsApp / telefono:</strong> 340 669 4946</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:contatti@dcpgas.it">Invia email</a>
+              <a class="btn btn-secondary" href="https://wa.me/393406694946" target="_blank">Scrivi su WhatsApp</a>
+            </div>
+          </article>
+          <article class="contact-box">
+            <h3>Morosità, solleciti e invio fatture</h3>
+            <p class="muted">Per solleciti di pagamento, chiarimenti amministrativi e invio fatture scrivi direttamente all’ufficio dedicato.</p>
+            <p><strong>Email:</strong> credito@dcpgas.it<br><strong>WhatsApp / telefono:</strong> 351 778 8418</p>
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:credito@dcpgas.it">Invia email</a>
+              <a class="btn btn-secondary" href="https://wa.me/393517788418" target="_blank">Scrivi su WhatsApp</a>
+            </div>
+          </article>
+        </div>
+        <div class="contact-strip">
+          <div class="strip-item"><strong>Area clienti</strong><br><span class="muted">Fatture, autoletture, pagamenti e reclami.</span></div>
+          <div class="strip-item"><strong>Numero verde</strong><br><span class="muted">800 974 472 da rete fissa.</span></div>
+          <div class="strip-item"><strong>Numero da mobile</strong><br><span class="muted">0823 1608776 anche da cellulare.</span></div>
+          <div class="strip-item"><strong>Segnala una truffa</strong><br><span class="muted">Spazio dedicato per tutela e prevenzione.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dove-siamo">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Dove siamo</div>
+            <h2>Presenza sul territorio, punti chiari e facili da trovare.</h2>
+          </div>
+          <p class="muted">Abbiamo messo in evidenza la sede e i riferimenti territoriali così il sito risulta subito concreto e credibile.</p>
+        </div>
+        <div class="locations">
+          <div>
+            <div class="location-item">
+              <div class="icon" style="margin:0">📍</div>
+              <div><strong>Sede legale</strong><br>Via Giacomo Matteotti 30, 81011 Alife (CE)</div>
+            </div>
+            <div class="location-item">
+              <div class="icon" style="margin:0">📍</div>
+              <div><strong>Punto di riferimento operativo</strong><br>Via Stazione 16, 81058 Vairano Scalo (CE)</div>
+            </div>
+            <div class="location-item">
+              <div class="icon" style="margin:0">📍</div>
+              <div><strong>Punto di riferimento operativo</strong><br>Via Venezia 26, 82037 Telese Terme (BN)</div>
+            </div>
+            <div class="location-item">
+              <div class="icon" style="margin:0">🧭</div>
+              <div><strong>Mappa e indicazioni</strong><br>In home ho messo la mappa della sede principale. Nel sito definitivo possiamo aggiungere una pagina contatti completa con itinerari e pulsanti rapidi.</div>
+            </div>
+          </div>
+          <div class="map-frame">
+            <iframe title="Mappa sede DCP Gas e Luce" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Via%20Giacomo%20Matteotti%2030%2C%2081011%20Alife%20CE&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="container grid-2">
+        <article class="card">
+          <div class="kicker">Contatti</div>
+          <h2>Parliamone.</h2>
+          <p class="muted">Contattaci per informazioni su gas, energia elettrica, mobilità, assistenza o pratiche amministrative. Ti richiamiamo noi e ti indirizziamo subito al canale corretto.</p>
+          <p><strong>Email assistenza:</strong> contatti@dcpgas.it<br><strong>Email crediti:</strong> credito@dcpgas.it<br><strong>WhatsApp assistenza:</strong> 340 669 4946<br><strong>WhatsApp crediti:</strong> 351 778 8418</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:contatti@dcpgas.it">Contattaci</a>
+            <a class="btn btn-secondary" href="https://areaclienti.dcpgas.it/" target="_blank">Vai all’area clienti</a>
+          </div>
+        </article>
+        <article class="card form-card">
+          <div class="kicker">Richiedi informazioni</div>
+          <h2>Lascia i tuoi dati.</h2>
+          <form>
+            <input class="field" type="text" placeholder="Nome e cognome" />
+            <input class="field" type="email" placeholder="Email" />
+            <input class="field" type="tel" placeholder="Telefono" />
+            <input class="field" type="text" placeholder="Servizio di interesse: Gas / Energia / Mobilità" />
+            <textarea class="field" placeholder="Scrivi la tua richiesta"></textarea>
+            <button class="btn btn-primary" type="button">Invia richiesta</button>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="Azzurro Geometrico Professionale Lavoro Biglietto Da Visita (1).png" alt="DCP Gas e Luce" style="width:170px;margin-bottom:16px" />
+        <p style="margin:0 0 10px;color:rgba(255,255,255,.82)">Gas naturale, energia elettrica, mobilità e assistenza clienti con un approccio chiaro, vicino e concreto.</p>
+        <small>DCP Impiantistica S.r.l. · Via Giacomo Matteotti 30, 81011 Alife (CE)</small>
+      </div>
+      <div>
+        <h3>Menu</h3>
+        <p><a href="#servizi">Servizi</a><br><a href="#green">Energia green</a><br><a href="#assistenza">Assistenza</a><br><a href="#dove-siamo">Dove siamo</a></p>
+      </div>
+      <div>
+        <h3>Contatti</h3>
+        <p><a href="mailto:contatti@dcpgas.it">contatti@dcpgas.it</a><br><a href="mailto:credito@dcpgas.it">credito@dcpgas.it</a><br>340 669 4946<br>351 778 8418</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
